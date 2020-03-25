@@ -27,3 +27,10 @@ group :development, :test do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'dotenv-rails'
 end
+
+gem 'devise'
+gem 'geocoder'
+gem 'faker'
+gem 'pg_search'
+gem 'cloudinary', '~> 1.12.0'
+gem 'pundit'

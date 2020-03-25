@@ -1,12 +1,10 @@
-.navbar-lewagon {
-  justify-content: space-between;
-  background: white;
+// #navbar-user {
+//   align-items: center;
+//   display: flex;
+// }
+.navbar-text {
+  padding-bottom: 0rem;
 }
 
-.navbar-lewagon .navbar-collapse {
-  flex-grow: 0;
-}
-
-.navbar-lewagon .navbar-brand img {
-  width: 40px;
-}
+// there is extra margin built onto the P element: come back and deal with this
+// if I have to after I have changed the buttons up

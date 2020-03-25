@@ -1,0 +1,19 @@
+#home-carousel {
+  // position: absolute;
+  height: 550px;
+  width: 550px;
+  // top: 60%; left: 30%;
+  border-radius: 10px;
+}
+
+.carousel-caption {
+  color: yellow;
+  h5 {
+    font-size: 2.25rem;
+    text-shadow: 2px 2px #000000;
+  }
+  p {
+    font-size: 1.25rem;
+    text-shadow: 2px 2px #000000;
+  }
+}

@@ -1,0 +1,46 @@
+<div class="bg">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div id="add-pet-box">
+          <div class="button-row">
+            <button type="button" class="btn btn-primary lost-or-found-btn font-weight-bold" id="lost-pet-btn" >This is a pet that I have lost.</button>
+            <button type="button" class="btn btn-outline-secondary lost-or-found-btn"" id="found-pet-btn">This is a pet that I have found.</button>
+          </div>
+          <%= simple_form_for @pet do |f| %>
+            <div class="radio-toolbar">
+              <%= f.label :status, 'Lost', id: "lost-radio" %>
+              <%= f.radio_button :status, 'Lost', :checked => true, id: "lost-radio-btn" %>
+              <%= f.label :status, 'Found', id: "found-radio" %>
+              <%= f.radio_button :status, 'Found', id: "found-radio-btn" %>
+            </div>
+            <div class="form-group">
+              <%= f.input :name, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.label :species, class: "control-label" %>
+              <%= f.select :species, [['Dog', 'dog'], ['Cat', 'cat'], ['Pig', 'pig'], ['Rabbit', 'rabbit'], ['Hamster', 'hamster'], ['Snake', 'snake']], class: "form-control" %>
+            </div>
+            <div class="form-group" id="age-entry">
+              <%= f.input :age, class: "form-control" %>
+            </div>
+            <div class="form-group">
+              <%= f.input :description, class: "form-control" %>
+            </div>
+            <div class="form-group" id="date-entry">
+              <%= f.label :date, "Date you lost this pet", class: "control-label" %>
+              <%= f.date_field :date, class: "form-control"%>
+            </div>
+            <div class="form-group">
+              <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+            </div>
+            <%= f.hidden_field :pet_id, :value => @pet.id %>
+            <%= f.button :submit, "Add this pet", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+  </div>
+</div>

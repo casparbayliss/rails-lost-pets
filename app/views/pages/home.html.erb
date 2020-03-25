@@ -1,2 +1,23 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="bg">
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="welcome-box">
+          <h1>Welcome to the Pet Finder!</h1>
+          <h2>Post a lost or find pet and reunite loved ones.</h2>
+          <div id="welcome-sign-up-btn">
+            <%= link_to "Sign up", new_user_registration_path, class: "btn btn-primary" %>
+          </div>
+          <div id="welcome-sign-in-btn">
+            <%= link_to "I already have an account. Sign in", new_user_session_path, id: "sign-in-link" %>
+          </div>
+        </div>
+        <div>
+          <%= render 'components/carousel' %>
+        </div>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+  </div>
+</div>
