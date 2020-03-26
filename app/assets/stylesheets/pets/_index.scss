@@ -22,4 +22,9 @@ h4 {
   color: black;
 }
 
+
+.container, .container-sm, .container-md, .container-lg, .container-xl {
+  max-width: 1600px;
+}
+
 @import "show";

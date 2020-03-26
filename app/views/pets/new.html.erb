@@ -31,6 +31,9 @@
               <%= f.label :date, "Date you lost this pet", class: "control-label" %>
               <%= f.date_field :date, class: "form-control"%>
             </div>
+            <div class="form-group" id="location-entry">
+              <%= f.input :location, label: "Where you lost this pet", class: "form-control", id: "location-input" %>
+            </div>
             <div class="form-group">
               <%= f.input :photos, as: :file, input_html: { multiple: true } %>
             </div>

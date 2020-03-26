@@ -48,7 +48,7 @@
                   <i class="far fa-user"><%= link_to " #{@pet.user.first_name}", href="#", class: "user-link" %></i>
                 </div>
                 <div class="col-4 text-center">
-                  <i class="fas fa-envelope"><%= link_to " Email", href="#", class: "user-link" %></i>
+                  <i class="fas fa-envelope"><%= mail_to @pet.user.email, "Email", class: "user-link" %></i>
                 </div>
                 <div class="col-4 text-center">
                   <i class="far fa-comments"><%= link_to " Chat", href="#", class: "user-link" %></i>

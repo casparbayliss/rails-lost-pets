@@ -1,3 +1,5 @@
+console.log("app/javascript/components/radioButtons.js is running");
+
 const clickRadioButtons = () => {
   console.log("Radio buttons are ready");
   const lostRadioButton = document.querySelector("#lost-radio-btn");

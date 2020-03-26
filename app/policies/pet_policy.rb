@@ -20,4 +20,12 @@ class PetPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def lost_all?
+    return true
+  end
+
+  def found_all?
+    return true
+  end
 end

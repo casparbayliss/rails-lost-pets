@@ -1,7 +1,31 @@
 class PetsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show]
+  skip_before_action :authenticate_user!, only: [:index, :show, :lost_all, :found_all]
   def index
-    @pets = policy_scope(Pet).order(created_at: :asc)
+    @pets = policy_scope(Pet).order(created_at: :asc).geocoded
+    lost_pets = []
+    found_pets = []
+    @pets.each do |pet|
+      if pet.status == "Lost"
+        lost_pets << pet
+      elsif pet.status == "Found"
+        found_pets << pet
+      end
+    end
+    @lostmarkers = lost_pets.map do |pet|
+      {
+        lat: pet.latitude,
+        lng: pet.longitude,
+        infoWindow: render_to_string(partial: "/pets/info_window", locals: { pet: pet })
+      }
+    end
+
+    @foundmarkers = found_pets.map do |pet|
+      {
+        lat: pet.latitude,
+        lng: pet.longitude,
+        infoWindow: render_to_string(partial: "/pets/info_window", locals: { pet: pet })
+      }
+    end
   end
 
   def show
@@ -10,11 +34,39 @@ class PetsController < ApplicationController
   end
 
   def found_all
-    @pets = Pet.all
+    @pets = policy_scope(Pet).order(created_at: :asc).geocoded
+    found_pets = []
+    @pets.each do |pet|
+      if pet.status == "Found"
+        found_pets << pet
+      end
+    end
+    @foundmarkers = found_pets.map do |pet|
+      {
+        lat: pet.latitude,
+        lng: pet.longitude,
+        infoWindow: render_to_string(partial: "/pets/info_window", locals: { pet: pet })
+      }
+    end
+    authorize @pets
   end
 
   def lost_all
-    @pets = Pet.all
+    @pets = policy_scope(Pet).order(created_at: :asc).geocoded
+    lost_pets = []
+    @pets.each do |pet|
+      if pet.status == "Lost"
+        lost_pets << pet
+      end
+    end
+    @lostmarkers = lost_pets.map do |pet|
+      {
+        lat: pet.latitude,
+        lng: pet.longitude,
+        infoWindow: render_to_string(partial: "/pets/info_window", locals: { pet: pet })
+      }
+    end
+    authorize @pets
   end
 
   def new
@@ -36,7 +88,6 @@ class PetsController < ApplicationController
   def edit
     @pet = Pet.find(params[:id])
     authorize @pet
-
   end
 
   def update
