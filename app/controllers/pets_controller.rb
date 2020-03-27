@@ -30,6 +30,7 @@ class PetsController < ApplicationController
 
   def show
     @pet = Pet.find(params[:id])
+    # @user = authorize User.find(params[:id])
     authorize @pet
   end
 
