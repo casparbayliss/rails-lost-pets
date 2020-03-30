@@ -1,0 +1,24 @@
+<h1>We are in messages/index</h1>
+<div id="messages" data-conversation-id="<%= @conversation.id %>">
+  <ul>
+    <% @messages.each do |message| %>
+      <% if message.body %>
+        <li>
+          <div class="message-container" id="message-<%= message.id %>">
+            <h4><%= message.user.first_name %></h4>
+            <p><%= message.body %></p>
+            <small><%= message.created_at.strftime("") %></small>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+
+<%= form_for [@conversation, @message] do |f| %>
+  <div class="field">
+    <%= f.text_area :body, placeholder: "Your message" %>
+  </div>
+
+  <%= f.submit "Send" %>
+<% end %>

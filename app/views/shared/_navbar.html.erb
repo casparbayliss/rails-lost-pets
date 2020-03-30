@@ -25,6 +25,11 @@
           <%= link_to "Add a lost or found pet", new_pet_path, class: "nav-link" %>
         <% end %>
       </li>
+      <% if user_signed_in? %>
+        <li class="nav-item">
+          <%= link_to "Messages", conversations_path, class: "nav-link" %>
+        </li>
+      <% end %>
     </ul>
 
     <% if user_signed_in? %>
