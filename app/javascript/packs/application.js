@@ -1,10 +1,8 @@
-require("@rails/ujs").start()
-require("turbolinks").start()
-require("@rails/activestorage").start()
+
 require("channels")
 import "bootstrap";
-import 'mapbox-gl/dist/mapbox-gl.css';
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+// import 'mapbox-gl/dist/mapbox-gl.css';
+// import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import { initLostMapbox } from '../plugins/init_mapbox';
 import { initFoundMapbox } from '../plugins/init_mapbox';
 import { clickRadioButtons } from '../components/radioButtons.js'
