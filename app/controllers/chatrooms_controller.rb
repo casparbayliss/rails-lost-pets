@@ -1,17 +1,17 @@
-class ChatroomsController < ApplicationController
-  def create
-    @recipient = params[:recipient]
-    @user = current.user
+# class ChatroomsController < ApplicationController
+#   def create
+#     @recipient = params[:recipient]
+#     @user = current.user
 
-  end
-  def show
-    @chatroom = Chatroom.find(params[:id])
-    @user = current_user
-  end
+#   end
+#   def show
+#     @chatroom = Chatroom.find(params[:id])
+#     @user = current_user
+#   end
 
-  private
+#   private
 
-  def chat_params
-    params.require(:chatroom).permit(:)
-  end
-end
+#   def chat_params
+#     params.require(:chatroom).permit(:)
+#   end
+# end
