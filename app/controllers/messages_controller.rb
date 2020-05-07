@@ -1,6 +1,10 @@
 class MessagesController < ApplicationController
+  
   before_action do
     @conversation = Conversation.find(params[:conversation_id])
+    if user_signed_in?
+      @conversations = policy_scope(Conversation).order(created_at: :asc).where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
+    end
   end
 
   def index

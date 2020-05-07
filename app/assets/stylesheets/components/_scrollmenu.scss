@@ -1,0 +1,30 @@
+div#scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+}
+
+// div#scrollmenu p {
+//   display: inline-block;
+//   color: white;
+//   text-align: center;
+//   text-decoration: none;
+// }
+
+div#scrollmenu a:hover {
+  background-color: #777;
+}
+
+.scroll-item {
+  display: inline-block;
+  text-align: left;
+  border: 5px solid black;
+  height: 200px;
+  width: 150px;
+}
+
+p {
+  margin-bottom: 0px;
+}

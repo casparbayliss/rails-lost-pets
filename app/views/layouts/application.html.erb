@@ -11,9 +11,15 @@
     <%= stylesheet_pack_tag 'map' %>
   </head>
   <body>
+
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
+
+    
     <%= yield %>
+    <% if user_signed_in? %>
+      <%= render 'components/scrollmenu' %>
+    <% end %>
     <%= javascript_include_tag 'application' %>
 
     <%= javascript_pack_tag 'application' %>

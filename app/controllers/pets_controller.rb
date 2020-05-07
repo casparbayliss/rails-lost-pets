@@ -1,7 +1,14 @@
 class PetsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show, :lost_all, :found_all]
+  before_action do
+    if user_signed_in?
+      @conversations = policy_scope(Conversation).order(created_at: :asc).where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
+    end
+  end
+  
   def index
     @pets = policy_scope(Pet).order(created_at: :asc).geocoded
+
     lost_pets = []
     found_pets = []
     @pets.each do |pet|

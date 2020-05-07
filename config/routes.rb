@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   root to: 'pets#index'
   resources :pets
   resources :users, only: [:show, :edit, :update]
-  resources :conversations, only: [:index, :create] do
+  resources :conversations, only: [:index, :create, :show] do
     resources :messages, only: [:index, :create]
   end
   get '/lostpets', to: 'pets#lost_all', as: 'all_lost_pets'

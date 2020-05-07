@@ -1,7 +1,18 @@
 class ConversationsController < ApplicationController
+  before_action do
+    if user_signed_in?
+      @conversations = policy_scope(Conversation).order(created_at: :asc).where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
+    end
+  end
   def index
     @users = User.where.not(id: current_user.id)
     @conversations = policy_scope(Conversation).order(created_at: :asc).where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
+  end
+
+  def show
+    @pet = Pet.find(params[:id])
+    authorize @pet
+    redirect_to pet_path
   end
 
   def create
