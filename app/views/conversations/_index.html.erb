@@ -1,8 +1,13 @@
 <div id="inbox">
 	<div id="inbox-title">
-		<p>Inbox</p>
+		<div id="inbox-word">
+			<p id="inbox-word">Inbox</p>
+		</div>
+		<div id="inbox-cross">
+			<i class="fas fa-times"></i>
+		</div>
 	</div>
-	<div class="conversations-list">
+	<div id="conversations-list">
 	  <% @conversations.each do |conversation| -%>
 	  	<div class="conversation-list-item">
 		    <%= link_to conversation.recipient(current_user).first_name, conversation_messages_path(conversation) -%>
