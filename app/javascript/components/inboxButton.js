@@ -9,7 +9,6 @@ console.log(document.cookie);
 // itself into my cookies
 // Split it into an array
 // var allCookies = document.cookie;
-
 // Set the regex as the beginning of my custom cookies
 const regex = /^displayed/
 const removeGoogle = (cookieArray) => {
@@ -42,7 +41,9 @@ const hiddenInboxBoolean = () => {
 		conversationsList.style.display = "none";
 		inboxCross.style.display = "none";
 		clickInboxTitle(cookieArray);
-	}
+	} else {
+		(cookieArray[0] = "displayed=no");
+	};
 };
 
 const clickInboxTitle = (cookieArray) => {
