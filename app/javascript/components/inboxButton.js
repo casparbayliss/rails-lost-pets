@@ -42,7 +42,8 @@ const hiddenInboxBoolean = () => {
 		inboxCross.style.display = "none";
 		clickInboxTitle(cookieArray);
 	} else {
-		(cookieArray[0] = "displayed=no");
+		document.cookie = "displayed=no";
+		hiddenInboxBoolean();
 	};
 };
 
