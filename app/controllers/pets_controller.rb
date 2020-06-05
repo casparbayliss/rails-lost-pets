@@ -1,5 +1,5 @@
 class PetsController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:index, :show, :lost_all, :found_all]
+  skip_before_action :authenticate_user!, only: [:index, :show, :lost_all, :found_all, :searched]
   before_action do
     if user_signed_in?
       @conversations = policy_scope(Conversation).order(created_at: :asc).where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
@@ -8,7 +8,19 @@ class PetsController < ApplicationController
   
   def index
     @pets = policy_scope(Pet).order(created_at: :asc).geocoded
-
+    # Search parameters
+    if params[:query].present?
+      # sql_query = " \
+      #   pets.name @@ :query \
+      #   OR pets.description @@ :query \
+      #   OR pets.species @@ :query \
+      #   OR users.first_name @@ :query \
+      #   OR users.last_name @@ :query \
+      # "
+      # @pets = Pet.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+      @pets = Pet.global_search(params[:query])
+    end
+    # Sort the pets by status
     lost_pets = []
     found_pets = []
     @pets.each do |pet|
@@ -18,6 +30,7 @@ class PetsController < ApplicationController
         found_pets << pet
       end
     end
+    # Add the lost pets to the lost map
     @lostmarkers = lost_pets.map do |pet|
       {
         lat: pet.latitude,
@@ -25,13 +38,30 @@ class PetsController < ApplicationController
         infoWindow: render_to_string(partial: "/pets/info_window", locals: { pet: pet })
       }
     end
-
+    # Add the found pets to the found map
     @foundmarkers = found_pets.map do |pet|
       {
         lat: pet.latitude,
         lng: pet.longitude,
         infoWindow: render_to_string(partial: "/pets/info_window", locals: { pet: pet })
       }
+    end
+  end
+
+  def searched
+    @pets = policy_scope(Pet).order(created_at: :asc).geocoded
+    authorize @pets
+    # Search parameters
+    if params[:query].present?
+      # sql_query = " \
+      #   pets.name @@ :query \
+      #   OR pets.description @@ :query \
+      #   OR pets.species @@ :query \
+      #   OR users.first_name @@ :query \
+      #   OR users.last_name @@ :query \
+      # "
+      # @pets = Pet.joins(:user).where(sql_query, query: "%#{params[:query]}%")
+      @pets = Pet.global_search(params[:query])
     end
   end
 

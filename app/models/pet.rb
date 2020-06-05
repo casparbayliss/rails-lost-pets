@@ -6,11 +6,11 @@ class Pet < ApplicationRecord
   validates_presence_of :description, :species
   include PgSearch::Model
   pg_search_scope :global_search,
-    against: [:name, :species, :date, :location],
+    against: [:name, :species, :description],
     associated_against: {
       user: [:first_name, :last_name]
     },
     using: {
-      tsearch: { any_word: true }
+      tsearch: { prefix: true }
     }
 end

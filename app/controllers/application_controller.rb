@@ -1,7 +1,11 @@
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :authenticate_user!
+  before_action do
+    if user_signed_in?
+        @conversations = policy_scope(Conversation).order(created_at: :asc).where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
+    end
+  end
   include Pundit
   protect_from_forgery
 

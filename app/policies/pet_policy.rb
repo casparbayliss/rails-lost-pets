@@ -21,6 +21,10 @@ class PetPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def searched?
+    return true
+  end
+
   def lost_all?
     return true
   end

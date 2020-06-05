@@ -41,11 +41,11 @@
             <div class="row justify-content-center top-buffer">
               <% if @pet.user == current_user %>
                 <div class="col-4 text-center">
-                    <i class="far fa-user"><%= link_to "#{@pet.user.first_name} (you)", href="#", class: "user-link" %></i>
+                    <i class="far fa-user"><%= link_to "#{@pet.user.first_name} (you)", user_path, class: "user-link" %></i>
                 </div>
               <% elsif  user_signed_in? %>
                 <div class="col-4 text-center">
-                  <i class="far fa-user"><%= @pet.user.first_name %></i>
+                  <i class="far fa-user"><%= link_to @pet.user.first_name, user_path(@pet.user), class: "user-link" %></i>
                 </div>
                 <div class="col-4 text-center">
                   <i class="fas fa-envelope"><%= mail_to @pet.user.email, "Email", class: "user-link" %></i>
@@ -55,7 +55,7 @@
                 </div>
               <% else %>
                 <div class="col-4 text-center">
-                  <i class="far fa-user"><%= @pet.user.first_name %></i>
+                  <i class="far fa-user"><%= link_to @pet.user.first_name, user_path, class: "user-link" %></i>
                 </div>
                 <div class="col-4 text-center">
                   <i class="fas fa-envelope"><%= mail_to @pet.user.email, "Email", class: "user-link" %></i>

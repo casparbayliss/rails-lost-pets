@@ -1,0 +1,68 @@
+<div class="container">
+	<div class="row justify-content-center top-buffer centered-row">
+		<% if @user == current_user %>
+			<div class="col-4 text-center">
+				<h1 class="align-middle"><%= @user.first_name %> <%= @user.last_name %></h1>
+			</div>
+			<div class="col-4 text-center">
+				<%= link_to "Edit profile", edit_user_registration_path, class: "btn btn-outline-secondary" %>
+			</div>
+		<% elsif  user_signed_in? %>
+			<div class="col-4 text-center">
+				<h1><%= @user.first_name %> <%= @user.last_name %></h1>
+			</div>
+			<div class="col-4 text-center">
+			<i class="fas fa-envelope"><%= mail_to @user.email, "Email", class: "user-link" %></i>
+			</div>
+			<div class="col-4 text-center">
+			<i class="far fa-comments"><%= link_to "Chat", conversations_path(sender_id: current_user.id, receiver_id: @user.id), method: :post %></i>
+			</div>
+		<% else %>
+			<div class="col-4 text-center">
+			<i class="far fa-user"><%= @user.first_name %></i>
+			</div>
+			<div class="col-4 text-center">
+			<i class="fas fa-envelope"><%= mail_to @user.email, "Email", class: "user-link" %></i>
+			</div>
+			<div class="col-4 text-center">
+			<i class="far fa-comments"><%= link_to "Log in to chat", conversation_path %></i>
+			</div>
+		<% end %>
+	</div>
+	<div class="row top-buffer">
+		<div class="col-4">
+			<% if current_user == @user %>
+				<h2>Your lost pets</h2>
+			<% else %>
+				<h2><%= @user.first_name %>'s lost pets</h2>
+			<% end %>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-8">
+			<div class="card-columns">
+				<% @user_pets.each do |pet| %>
+					<% if pet.status == "Lost" %>
+						<%= link_to pet do %>
+							<div class="card">
+								<%= cl_image_tag pet.photos.first.key, class: "card-img-top" %>
+								<div class="card-body">
+									<p class="card-text"><%= pet.description %></p>
+								</div>
+							</div>
+						<% end %>
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+		<div class="col-4">
+			<div
+				id="lost-map"
+				style="width: 100%;
+				height: 600px;"
+				data-markers="<%= @markers.to_json %>"
+				data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+			</div>
+		</div>
+  </div>
+</div>
