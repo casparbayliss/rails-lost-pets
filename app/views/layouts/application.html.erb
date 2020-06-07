@@ -2,6 +2,8 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta content="authenticity_token" name="csrf-param" />
+    <meta content="aV+d7Z55XBJF2VtyL8V3zupR3OwhaQ6UHNtlQLBQf5Y=" name="csrf-token" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>TODO</title>
     <%= csrf_meta_tags %>
@@ -15,32 +17,10 @@
     <%= render 'shared/flashes' %>
     <%= yield %>
     <% if user_signed_in? %>
+      <%= render 'conversations/conversations-modal' %>
       <%= render 'conversations/index' %>
     <% end %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-         https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-analytics.js"></script>
-
-    <script>
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        apiKey: "AIzaSyDC1VU371S8rB0BQVv7yuB4c35qu7DKVeY",
-        authDomain: "casparbayliss-lost-pets.firebaseapp.com",
-        databaseURL: "https://casparbayliss-lost-pets.firebaseio.com",
-        projectId: "casparbayliss-lost-pets",
-        storageBucket: "casparbayliss-lost-pets.appspot.com",
-        messagingSenderId: "452047589662",
-        appId: "1:452047589662:web:f36397fdb7bf8a4181f90f",
-        measurementId: "G-8QS5WFT7T1"
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-      firebase.analytics();
-    </script>
   </body>
 </html>

@@ -1,10 +1,14 @@
 <div id="inbox">
 	<div id="inbox-title">
-		<div id="inbox-word">
-			<p id="inbox-word">Inbox</p>
-		</div>
-		<div id="inbox-cross">
-			<i class="fas fa-times"></i>
+		<div id="inbox-button" class="btn-group dropup">
+			<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			Inbox
+			</button>
+			<div class="dropdown-menu">
+				<div class="dropdown-item" id="all-messages-show-button">All messages</div>
+				<div class="dropdown-item" id="expand-inbox-button">Expand</div>
+				<div class="dropdown-item" id="collapse-inbox-button">Collapse</div>
+			</div>
 		</div>
 	</div>
 	<div id="conversations-list">

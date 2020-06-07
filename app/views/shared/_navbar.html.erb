@@ -27,7 +27,8 @@
       </li>
       <% if user_signed_in? %>
         <li class="nav-item">
-          <%= link_to "Messages", conversations_path, class: "nav-link" %>
+          <!-- <%= link_to "Messages", conversations_path, class: "nav-link" %> -->
+          <a id="navbar-messages-button" class="nav-link">Messages</a>
         </li>
       <% end %>
       <%= form_tag searched_path, method: :get, class: "form-inline my-2 my-lg-0" do %>

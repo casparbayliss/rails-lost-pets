@@ -7,7 +7,8 @@ class ApplicationController < ActionController::Base
     end
   end
   include Pundit
-  protect_from_forgery
+  protect_from_forgery with: :exception, prepend: true
+  skip_before_action :verify_authenticity_token
 
   # Pundit: white-list approach
   after_action :verify_authorized, except: :index, unless: :skip_pundit?
@@ -31,5 +32,11 @@ class ApplicationController < ActionController::Base
 
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
+  end
+
+  def set_csrf_cookie
+    if protect_against_forgery?
+      cookies['XSRF-TOKEN'] = form_authenticity_token
+    end
   end
 end

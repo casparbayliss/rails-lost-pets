@@ -6,5 +6,9 @@
   padding-bottom: 0rem;
 }
 
+.navbar {
+  z-index: 5;
+}
+
 // there is extra margin built onto the P element: come back and deal with this
 // if I have to after I have changed the buttons up

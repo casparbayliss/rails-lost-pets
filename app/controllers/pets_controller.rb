@@ -8,18 +8,6 @@ class PetsController < ApplicationController
   
   def index
     @pets = policy_scope(Pet).order(created_at: :asc).geocoded
-    # Search parameters
-    if params[:query].present?
-      # sql_query = " \
-      #   pets.name @@ :query \
-      #   OR pets.description @@ :query \
-      #   OR pets.species @@ :query \
-      #   OR users.first_name @@ :query \
-      #   OR users.last_name @@ :query \
-      # "
-      # @pets = Pet.joins(:user).where(sql_query, query: "%#{params[:query]}%")
-      @pets = Pet.global_search(params[:query])
-    end
     # Sort the pets by status
     lost_pets = []
     found_pets = []
