@@ -1,5 +1,5 @@
-<h1>This is 'index.html.erb' but I have an identical '_index.html.erb' that I want to use</h1>
 <div id="messages" data-conversation-id="<%= @conversation.id %>">
+  <h1>This is not the partial</h1>
   <ul>
     <% @messages.each do |message| %>
       <% if message.body %>

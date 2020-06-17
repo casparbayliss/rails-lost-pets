@@ -3,4 +3,9 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def autocomplete
+    
+    results = AutocompleteSearchService.new(params[:q]).call
+  private
 end

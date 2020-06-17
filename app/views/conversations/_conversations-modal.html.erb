@@ -4,21 +4,21 @@
             <h2>Messages</h2>
             <button id="close-conversations-modal-button" type="button" class="btn btn-outline-secondary">Close</button>
         </div>
-        <div class="row">
-            <div class="col-4">
-                <h1>List of conversations (working)</h1>
-                <% @conversations.each do |conversation| -%>
-                    <div class="conversation-list-item">
-                        <%= link_to conversation.recipient(current_user).first_name, conversation_messages_path(conversation) -%>
-                        <% if !conversation.unread_message_count(current_user).zero? -%>
-                        <%= conversation.unread_message_count(current_user) -%>
-                        <% end -%>
-                    </div>
+        <div id="user-messages-search">
+            <%= form_tag(root_path, method: 'get', class: "form-inline") do %>
+                <div id= "search-data" class="form-search search-data" data-users="<%= @users.to_json %>">
+                    <%= text_field_tag :q, nil, autocomplete: :off, class: "form-control search-input", placeholder: "Search for user" %>
+                    <%= submit_tag "Search", class: "btn btn-primary button-home" %>
+                </div>
+            <% end %>
+        </div>
+        <% @conversations.each do |conversation| -%>
+            <div class="conversation-list-item">
+                <%= link_to conversation.recipient(current_user).first_name, conversation_messages_path(conversation) -%>
+                <% if !conversation.unread_message_count(current_user).zero? -%>
+                    <%= conversation.unread_message_count(current_user) -%>
                 <% end -%>
             </div>
-            <div class="col-8">
-                <div id="displayed-conversation"></div>
-            </div>
-        </div>
+        <% end -%>
     </div>
 </div>

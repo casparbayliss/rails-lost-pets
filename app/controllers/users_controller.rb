@@ -4,6 +4,7 @@ class UsersController < ApplicationController
         if user_signed_in?
             @conversations = policy_scope(Conversation).order(created_at: :asc).where("sender_id = ? OR receiver_id = ?", current_user.id, current_user.id)
         end
+
     end
 
     def show
