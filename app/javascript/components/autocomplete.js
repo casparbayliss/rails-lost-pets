@@ -2,7 +2,8 @@ import 'js-autocomplete/auto-complete.css';
 import autocomplete from 'js-autocomplete';
 
 const renderItem = function (user) {
-  return `<div class="autocomplete-suggestion"><%= raw (link_to "${user[0]} ${user[1]}", conversation_messages_path(conversation), remote: true) %></div>`
+  return `<div class="autocomplete-suggestion">${user[0]} ${user[1]}</span></div>`
+  // return `<div class="autocomplete-suggestion"><%= raw (link_to "${user[0]} ${user[1]}", conversation_messages_path(conversation), remote: true) %></div>`
 };
 
 const autocompleteSearch = function() {
