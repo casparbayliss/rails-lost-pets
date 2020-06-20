@@ -20,4 +20,8 @@ class UsersController < ApplicationController
 				end
 				authorize pets
     end
+
+    def backend-search
+        @hits = Contact.search(@q, { hitsPerPage: 5, page: (params['page'] || 1) })
+    end
 end

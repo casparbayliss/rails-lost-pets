@@ -17,7 +17,7 @@ const autocompleteSearch = function() {
       source: function(term, suggest){
           term = term.toLowerCase();
           const choices = users;
-          console.log(choices[0])
+          console.log(choices[0]);
           const matches = [];
           for (let i = 0; i < choices.length; i++)
               if ((~choices[i][0].toLowerCase().indexOf(term)) || (~choices[i][1].toLowerCase().indexOf(term)) ) matches.push(choices[i]);
@@ -26,7 +26,7 @@ const autocompleteSearch = function() {
       },
       renderItem: renderItem,
     });
-  }
+  };
 };
 
 

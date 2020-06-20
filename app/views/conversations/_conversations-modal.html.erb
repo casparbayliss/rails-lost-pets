@@ -12,6 +12,9 @@
                 </div>
             <% end %>
         </div>
+        <!-- <%= form_for User.new, url: '/backend-search', method: 'get' do |f| %>
+            <%= text_field :contact, :q, class: "form-control" %>
+        <% end %> -->
         <% @conversations.each do |conversation| -%>
             <div class="conversation-list-item">
                 <%= link_to conversation.recipient(current_user).first_name, conversation_messages_path(conversation) -%>
