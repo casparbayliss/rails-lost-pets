@@ -49,8 +49,19 @@ class PetsController < ApplicationController
       #   OR users.last_name @@ :query \
       # "
       # @pets = Pet.joins(:user).where(sql_query, query: "%#{params[:query]}%")
-      @pets = Pet.global_search(params[:query])
+      # @pets = Pet.global_search(params[:query])
+      @pets = Pet.search params[:query], operator: "or", misspellings: {edit_distance: 2}
     end
+  end
+
+  def autocomplete
+    render json: Pet.search(params[:query], {
+      fields: ["name^5"],
+      match: :word_start,
+      limit: 10,
+      load: false,
+      misspellings: {below: 5}
+    }).map(&:title)
   end
 
   def show

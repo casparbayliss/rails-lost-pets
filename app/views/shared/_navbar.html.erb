@@ -31,11 +31,12 @@
           <a id="navbar-messages-button" class="nav-link">Messages</a>
         </li>
       <% end %>
-      <%= form_tag searched_path, method: :get, class: "form-inline my-2 my-lg-0" do %>
+      <%= form_tag searched_path, method: :get, class: "form-inline my-2 my-lg-0", id: "navbar-search" do %>
         <%= text_field_tag :query,
           params[:query],
           class: "form-control mr-sm-2",
-          placeholder: "Search"
+          placeholder: "Search",
+          id: "navbar-search"
         %>
         <%= submit_tag "Search", class: "btn btn-outline-success my-2 my-sm-0"%>
       <% end %>

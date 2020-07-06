@@ -24,4 +24,16 @@ class UsersController < ApplicationController
     def backend_search
         @hits = Contact.search(@q, { hitsPerPage: 5, page: (params['page'] || 1) })
     end
+
+    
+
+    def autocomplete
+        render json: Movie.search(params[:query], {
+          fields: ["first_name^5", "last_name"],
+          match: :word_start,
+          limit: 10,
+          load: false,
+          misspellings: {below: 5}
+        }).map(&:title)
+      end
 end
