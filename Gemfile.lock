@@ -261,6 +261,7 @@ DEPENDENCIES
   algoliasearch-rails
   autoprefixer-rails
   bootsnap
+  byebug
   cloudinary
   devise
   dotenv-rails
