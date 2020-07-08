@@ -5,6 +5,8 @@
     <meta content="authenticity_token" name="csrf-param" />
     <meta content="aV+d7Z55XBJF2VtyL8V3zupR3OwhaQ6UHNtlQLBQf5Y=" name="csrf-token" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="algolia-app-id" content="<%= ENV["ALGOLIA_APP_ID"] %>">
+    <meta name="algolia-search-only-api-key" content="<%= ENV["ALGOLIA_SEARCH_ONLY_API_KEY"] %>">
     <title>TODO</title>
     <%= csrf_meta_tags %>
     <%= action_cable_meta_tag %>

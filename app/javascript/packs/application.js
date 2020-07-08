@@ -8,15 +8,15 @@ import { hiddenInboxBoolean } from '../components/inboxButton.js';
 import { clickRadioButtons } from '../components/radioButtons.js';
 import { initAutocomplete } from '../plugins/init_autocomplete.js';
 import { modalButtons } from '../components/inboxModal.js';
-import { autocompleteSearch } from '../components/autocomplete.js';
+import { algoliaSearch } from '../plugins/algoliasearch.js';
 
 console.log("Hello world from Webpacker");
 console.log("app/javascript/packs/applications.js running");
 
+initAutocomplete();
 hiddenInboxBoolean();
 modalButtons();
 clickRadioButtons();
-autocompleteSearch();
+algoliaSearch();
 initLostMapbox();
 initFoundMapbox();
-initAutocomplete();

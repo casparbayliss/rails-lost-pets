@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     
 
     def autocomplete
-        render json: Movie.search(params[:query], {
+        render json: User.search(params[:query], {
           fields: ["first_name^5", "last_name"],
           match: :word_start,
           limit: 10,

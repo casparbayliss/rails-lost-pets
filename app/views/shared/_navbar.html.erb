@@ -27,16 +27,16 @@
       </li>
       <% if user_signed_in? %>
         <li class="nav-item">
-          <!-- <%= link_to "Messages", conversations_path, class: "nav-link" %> -->
+          <%= link_to "Messages", conversations_path, class: "nav-link" %>
           <a id="navbar-messages-button" class="nav-link">Messages</a>
         </li>
       <% end %>
-      <%= form_tag searched_path, method: :get, class: "form-inline my-2 my-lg-0", id: "navbar-search" do %>
+      <%= form_tag searched_path, method: :get, class: "form-inline my-2 my-lg-0", id: "query2" do %>
         <%= text_field_tag :query,
           params[:query],
           class: "form-control mr-sm-2",
           placeholder: "Search",
-          id: "navbar-search"
+          id: "query1"
         %>
         <%= submit_tag "Search", class: "btn btn-outline-success my-2 my-sm-0"%>
       <% end %>
@@ -59,3 +59,20 @@
     <% end %>
   </div>
 </nav>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/bloodhound.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/corejs-typeahead/1.2.1/typeahead.jquery.min.js"></script>
+ <script>
+  var pets = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    remote: {
+      url: '/pets/autocomplete?query=%QUERY',
+      wildcard: '%QUERY'
+    }
+  });
+  $('#query').typeahead(null, {
+    source: pets
+  });
+</script>

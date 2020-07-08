@@ -3,7 +3,7 @@ class Pet < ApplicationRecord
   geocoded_by :location
   after_validation :geocode, if: :will_save_change_to_location?
   belongs_to :user
-  after_commit :reindex_product
+  after_commit :reindex_pet
   has_many_attached :photos
   validates_presence_of :description, :species
   # include PgSearch::Model
@@ -16,7 +16,7 @@ class Pet < ApplicationRecord
   #     tsearch: { prefix: true }
   #   }
   
-  def reindex_product
-      product.reindex
+  def reindex_pet
+      Pet.reindex
   end
 end

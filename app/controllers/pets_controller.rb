@@ -61,7 +61,7 @@ class PetsController < ApplicationController
       limit: 10,
       load: false,
       misspellings: {below: 5}
-    }).map(&:title)
+    }).map(&:name)
   end
 
   def show

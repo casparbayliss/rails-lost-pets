@@ -5,12 +5,13 @@
             <button id="close-conversations-modal-button" type="button" class="btn btn-outline-secondary">Close</button>
         </div>
         <div id="user-messages-search">
-            <%= form_tag(root_path, method: 'get', class: "form-inline") do %>
+            <!-- <%= form_tag(root_path, method: 'get', class: "form-inline") do %>
                 <div id= "search-data" class="form-search search-data" data-users="<%= @users.to_json %>">
                     <%= text_field_tag :q, nil, autocomplete: :off, class: "form-control search-input", placeholder: "Search for user" %>
                     <%= submit_tag "Search", class: "btn btn-primary button-home" %>
                 </div>
-            <% end %>
+            <% end %> -->
+            <input type="text" name="search" id="search"/>
         </div>
         <!-- <%= form_for User.new, url: '/backend-search', method: 'get' do |f| %>
             <%= text_field :contact, :q, class: "form-control" %>

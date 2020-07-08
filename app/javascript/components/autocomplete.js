@@ -29,20 +29,20 @@ import autocomplete from 'js-autocomplete';
 //   };
 // };
 
-const autocompleteSearch = function() {
-  var pets = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    remote: {
-      url: '/pets/autocomplete?query=%QUERY',
-      wildcard: '%QUERY'
-    }
-  });
-  $('#navbar-search').typeahead(null, {
-    source: pets
-  });
-}
+// const autocompleteSearch = function() {
+//   var pets = new Bloodhound({
+//     datumTokenizer: Bloodhound.tokenizers.whitespace,
+//     queryTokenizer: Bloodhound.tokenizers.whitespace,
+//     remote: {
+//       url: '/pets/autocomplete?query=%QUERY',
+//       wildcard: '%QUERY'
+//     }
+//   });
+//   $('#navbar-search').typeahead(null, {
+//     source: pets
+//   });
+// }
 
 
 
-export { autocompleteSearch };
+// export { autocompleteSearch };
