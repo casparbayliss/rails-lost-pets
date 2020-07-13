@@ -45,4 +45,4 @@ import autocomplete from 'js-autocomplete';
 
 
 
-// export { autocompleteSearch };
+export { autocompleteSearch };

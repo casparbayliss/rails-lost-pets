@@ -2,6 +2,7 @@ import algoliasearch from "algoliasearch";
 
 const algoliaSearch = () => {
   const inputField = document.querySelector("#search");
+  const inputDiv = document.querySelector("#user-messages-search");
 
   if (inputField) {
     const appId = document.querySelector("meta[name='algolia-app-id']").content;
@@ -11,10 +12,32 @@ const algoliaSearch = () => {
     const index = client.initIndex('User');
     
     inputField.addEventListener("input", () => {
+
       index.search(inputField.value).then((content) => {
-        console.log(content);
+        console.log(content.hits)
+        var autoCompleteSuggestions = document.getElementsByClassName("autocomplete-suggestion");
+        console.log(autoCompleteSuggestions);
+        
+        if (autoCompleteSuggestions.length != 0) {
+          var z = 0;
+          while (z < autoCompleteSuggestions.length) {
+            autoCompleteSuggestions[z].remove();
+            z++;
+          }
+        };
+        
+
         // handle results however you like...
-      })
+        if (content.hits.length != 0) {
+          console.log(content.hits[0].first_name);
+          var autoCompleteLimit = 5;
+          var x = 0;
+          while (x < content.hits.length && x < autoCompleteLimit ) {
+            inputField.insertAdjacentHTML("afterend", `<div class="autocomplete-suggestion">${content.hits[x].first_name}</div>`);
+            x++;
+          }
+        };
+      });
     });
   }
 }

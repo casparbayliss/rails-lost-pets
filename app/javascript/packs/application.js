@@ -13,6 +13,7 @@ import { algoliaSearch } from '../plugins/algoliasearch.js';
 console.log("Hello world from Webpacker");
 console.log("app/javascript/packs/applications.js running");
 
+
 initAutocomplete();
 hiddenInboxBoolean();
 modalButtons();
