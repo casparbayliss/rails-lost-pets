@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     end
 
     def show
-        @user = User.find(params[:id])
+        @user = User.friendly.find(params[:id])
         @user_pets = @user.pets.geocoded
 				pets = policy_scope(Pet).order(created_at: :asc).geocoded
         @markers = @user_pets.map do |pet|

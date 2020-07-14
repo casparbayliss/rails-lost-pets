@@ -8,6 +8,7 @@
     "@rails/webpacker": "4.2.2",
     "algoliasearch": "^4.3.0",
     "bootstrap": "^4.4.1",
+    "hogan.js": "^3.0.2",
     "jquery": "^3.4.1",
     "js-autocomplete": "^1.0.4",
     "mapbox-gl": "^1.10.0",

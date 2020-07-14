@@ -9,4 +9,11 @@ class User < ApplicationRecord
   algoliasearch do 
     attributes :first_name, :last_name
   end
+  extend FriendlyId
+  friendly_id :slug_candidates, use: :slugged
+  def slug_candidates
+    [
+      [:first_name, :last_name],
+    ]
+  end
 end
