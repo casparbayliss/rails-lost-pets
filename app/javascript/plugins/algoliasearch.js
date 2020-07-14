@@ -33,7 +33,8 @@ const algoliaSearch = () => {
           var autoCompleteLimit = 5;
           var x = 0;
           while (x < content.hits.length && x < autoCompleteLimit ) {
-            inputField.insertAdjacentHTML("afterend", `<div class="autocomplete-suggestion">${content.hits[x].first_name}</div>`);
+            inputField.insertAdjacentHTML("afterend", 
+            `<div class="autocomplete-suggestion"><a href="http://localhost:3000/users/${content.hits[x].first_name.toLowerCase()}-${content.hits[x].last_name.toLowerCase()}">${content.hits[x].first_name}</a></div>`);
             x++;
           }
         };
